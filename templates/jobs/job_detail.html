@@ -1,1 +1,13 @@
-<!doctype html><html><head><meta charset='utf-8'><title>{{ job.title }}</title></head><body style='font-family:Arial;max-width:800px;margin:40px auto'><a href='{% url "job_list" %}'>← Jobs</a><h1>{{ job.title }}</h1><h2>{{ job.company }}</h2><p>{{ job.location }} · {{ job.job_type }}</p><p><strong>Salary:</strong> {{ job.salary|default:'Not specified' }}</p><h3>Description</h3><p>{{ job.description }}</p><h3>Skills</h3><p>{{ job.skills }}</p>{% if user.is_authenticated %}<form method='post' action='{% url "apply" job.id %}'>{% csrf_token %}<input name='resume_url' placeholder='Resume URL' style='width:100%;padding:8px'><br><br><textarea name='cover_letter' placeholder='Cover letter' style='width:100%;height:120px'></textarea><br><button>Apply</button></form>{% else %}<p><a href='/admin/login/'>Log in</a> to apply.</p>{% endif %}</body></html>
+<!doctype html>
+<html><head><meta charset="utf-8"><title>{{ job.title }} | Job Portal</title></head>
+<body style="font-family:Arial;max-width:800px;margin:40px auto;line-height:1.6">
+<a href="{% url 'job_list' %}">← Jobs</a>
+<h1>{{ job.title }}</h1><h2>{{ job.company }}</h2>
+<p>{{ job.location }} · {{ job.get_job_type_display }} · {{ job.salary|default:'Salary not specified' }}</p>
+<h3>Description</h3><p>{{ job.description }}</p><h3>Skills</h3><p>{{ job.skills }}</p>
+{% if messages %}{% for message in messages %}<p><strong>{{ message }}</strong></p>{% endfor %}{% endif %}
+{% if already_applied %}<p><strong>You have already applied for this position.</strong></p>
+{% elif user.is_authenticated %}
+<form method="post" action="{% url 'apply' job.id %}">{% csrf_token %}{{ form.as_p }}<button type="submit">Submit Application</button></form>
+{% else %}<p><a href="{% url 'login' %}?next={{ request.path }}">Log in to apply</a></p>{% endif %}
+</body></html>
