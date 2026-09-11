@@ -1,29 +1,31 @@
 # Django Job Portal
 
-A portfolio-ready full-stack recruitment platform built with **Python, Django and Django REST Framework**. It demonstrates authentication, job discovery, recruiter workflows, candidate applications, database relationships, permissions and automated testing.
+> Full-stack recruitment platform built with Python, Django and Django REST Framework.
 
-## Features
+A portfolio project demonstrating practical backend development through candidate and recruiter workflows, authentication, permissions, relational data modeling, REST APIs, automated testing and CI.
 
-### Candidates
+## Key Features
+
+### Candidate
 - Browse active jobs
 - Search by title, company or skill
 - Filter by location and job type
-- Apply with resume URL and cover letter
+- Submit applications with resume URL and cover letter
 - Prevent duplicate applications
 - Track application status
 
-### Recruiters
-- Post jobs
-- View jobs they created
-- Review applications
+### Recruiter
+- Create and manage job postings
+- Review applications for owned jobs
 - Update application status: Applied, Shortlisted, Rejected or Hired
-- Access is restricted to their own job postings
+- Restrict access to authorized job owners
 
 ### Engineering
 - Django ORM and relational database design
-- Django authentication and CSRF protection
+- Authentication and CSRF protection
+- Role-aware permissions
 - Django REST Framework API
-- Database migration
+- Database migrations
 - Automated unit tests
 - GitHub Actions CI
 - Environment-based configuration
@@ -34,30 +36,19 @@ A portfolio-ready full-stack recruitment platform built with **Python, Django an
 |---|---|---|
 | GET | `/api/jobs/` | List active jobs |
 | POST | `/api/jobs/` | Create a job (authenticated) |
-| GET | `/api/jobs/<id>/` | View a job |
-| GET | `/api/applications/` | View your applications |
+| GET | `/api/jobs/<id>/` | Retrieve a job |
+| GET | `/api/applications/` | View current user's applications |
 | POST | `/api/applications/` | Submit an application |
 
 ## Tech Stack
 
-- Python 3.11+
-- Django 5
-- Django REST Framework
-- SQLite for development
-- HTML/CSS
-- GitHub Actions
+**Python 3.11+ • Django 5 • Django REST Framework • SQLite • HTML/CSS • GitHub Actions**
 
 ## Run Locally
 
 ```bash
 python -m venv venv
-
-# Windows
 venv\Scripts\activate
-
-# macOS/Linux
-# source venv/bin/activate
-
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
@@ -94,9 +85,9 @@ django-job-portal/
 └── requirements.txt
 ```
 
-## Portfolio Note
+## Skills Demonstrated
 
-This project is designed as an interview-ready demonstration of practical Django development, including models, forms, authentication, permissions, REST APIs, testing and CI.
+**Python • Django • Django REST Framework • REST APIs • ORM • Authentication • Authorization • Database Design • Testing • Git • GitHub Actions • Full-Stack Web Development**
 
 ## Author
 
